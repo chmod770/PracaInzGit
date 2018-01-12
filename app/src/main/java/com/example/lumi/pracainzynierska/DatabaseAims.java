@@ -30,5 +30,9 @@ public class DatabaseAims extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    public void insertAim()
+    {
+
+    }
 
 }
