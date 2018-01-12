@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Jak się dziś czujesz ?"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/btn_day"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:onClick="buttonOnClick"
+        android:text="1"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:onClick="buttonOnClick"
+        android:text="2"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_toLeftOf="@+id/btn_3"
+        android:layout_toStartOf="@+id/btn_3"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
+
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:onClick="buttonOnClick"
+        android:text="3"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_4"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:onClick="buttonOnClick"
+        android:text="4"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_toLeftOf="@+id/btn_5"
+        android:layout_toStartOf="@+id/btn_5"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <Button
+        android:id="@+id/btn_5"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:onClick="buttonOnClick"
+        android:text="5"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/tvQuestion"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btn_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kalendarz"
+        android:onClick="buttonOnClick"
+        android:layout_below="@+id/btn_db"
+        android:layout_alignLeft="@+id/btn_settings"
+        android:layout_alignStart="@+id/btn_settings" />
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ustawienia"
+        android:onClick="buttonOnClick"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buttonOnClick"
+        android:text="BazaDanych"
+        android:layout_below="@+id/btn_settings"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.36"
+        android:text="Twój poziom zadowolenia:"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btn_1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btn_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btn_calendar"
+        android:onClick="buttonOnClick"
+        android:text="Mój Dzień" />
+
+    <Button
+        android:id="@+id/btn_tasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_day"
+        android:onClick="buttonOnClick"
+        android:text="Taski"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>
