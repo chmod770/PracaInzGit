@@ -32,7 +32,7 @@ public class DatabaseAims extends SQLiteOpenHelper{
 
     public void insertAim()
     {
-
+        
     }
 
 }
