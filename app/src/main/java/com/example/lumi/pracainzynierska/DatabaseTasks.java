@@ -18,7 +18,7 @@ public class DatabaseTasks extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " +"Tasks"+ " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL("CREATE TABLE " +database_table+ " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " UserID INTEGER," +
                 " Nazwa TEXT," +
                 " Data TEXT," +
@@ -34,7 +34,7 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(int userID ,String nazwa, String data, int czas, int czyZrobione)
+    public boolean insertData(int userID ,String nazwa, String data, int czas, int czyZrobione,int priorytet)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -44,7 +44,7 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         cv.put("Data",data);
         cv.put("Czas",czas);
         cv.put("CzyZrobione",czyZrobione);
-        cv.put("Priorytet",1);
+        cv.put("Priorytet",priorytet);
         cv.put("CelID",1);
         if(db.insert(database_table, null, cv)==-1)
             return false;

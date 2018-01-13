@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dodaj"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:text="Dodaj" />
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:ems="10"
         android:hint="Wprowadź Nazwę"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/et_time"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
+        android:layout_alignLeft="@+id/et_name"
+        android:layout_alignStart="@+id/et_name"
+        android:layout_below="@+id/et_name"
         android:ems="10"
         android:hint="Wprowadź Czas"
         android:inputType="textPersonName" />
@@ -51,21 +49,21 @@
         android:inputType="date"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_alignLeft="@+id/sp_priority"
+        android:layout_alignStart="@+id/sp_priority" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nazwa"
-        android:textSize="24sp"
         android:layout_alignBaseline="@+id/et_name"
         android:layout_alignBottom="@+id/et_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp" />
+        android:layout_marginStart="12dp"
+        android:text="Nazwa"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -73,20 +71,40 @@
         android:layout_height="wrap_content"
         android:text="Data"
         android:textSize="24sp"
-        android:layout_below="@+id/et_name"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="14dp" />
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/textView5"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_alignBaseline="@+id/et_time"
+        android:layout_alignBottom="@+id/et_time"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
         android:text="Czas"
-        android:textSize="24sp"
-        android:layout_below="@+id/et_date"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Priorytet"
+        android:textSize="22sp"
+        android:layout_below="@+id/et_time"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <Spinner
+        android:id="@+id/sp_priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignLeft="@+id/et_time"
+        android:layout_alignStart="@+id/et_time" />
 
 </RelativeLayout>

@@ -12,9 +12,11 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,19 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
                 datePicker.show(getSupportFragmentManager(),"date picker");
             }
         });
+
+
+        /*Spinner spCategories = (Spinner)findViewById(R.id.sp_category);
+        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.categories));
+        categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategories.setAdapter(categoriesAdapter);*/
+
+        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.priority));
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPriority.setAdapter(priorityAdapter);
     }
 
 
@@ -65,7 +80,9 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         EditText etName= (EditText)findViewById(R.id.et_name);
         EditText etDate= (EditText)findViewById(R.id.et_date);
         EditText etTime= (EditText)findViewById(R.id.et_time);
+        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
         String date;
+
         if(etDate.getText().toString().length()==0)
             date=etDate.getHint().toString();
         else
@@ -82,11 +99,12 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         }
 
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
-        if(db.insertData(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), 0))
+        if(db.insertData(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), 0,spPriority.getSelectedItemPosition()))
         {
             finish();
         }else
             Toast.makeText(getApplicationContext(), "Kolejne błędy", Toast.LENGTH_LONG).show();
+
     }
 
     boolean tryParseInt(String value) {

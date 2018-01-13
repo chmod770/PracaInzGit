@@ -71,7 +71,7 @@ public class DayPlanActivity extends AppCompatActivity {
         if(b!=null)
             cursor = dbTasks.getDayData(b.getString("date"));
         else
-        cursor = dbTasks.getData();
+        cursor = dbTasks.getDayData(Dates.getTodayDate());
 
         while (cursor.moveToNext())
         {

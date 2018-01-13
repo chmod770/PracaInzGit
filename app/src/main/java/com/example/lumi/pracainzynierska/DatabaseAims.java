@@ -1,5 +1,6 @@
 package com.example.lumi.pracainzynierska;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,8 +20,8 @@ public class DatabaseAims extends SQLiteOpenHelper{
         db.execSQL("CREATE TABLE " + database_table + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " UserID INTEGER," +
                 " Nazwa TEXT," +
-                " Kategoria TEXT," +
                 " DataDo TEXT," +
+                " Opis TEXT," +
                 " Kategoria TEXT);");
     }
 
@@ -30,9 +31,21 @@ public class DatabaseAims extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public void insertAim()
+    public boolean insertAim(int userID,String nazwa,String opis, String dataDo, String Kategoria)
     {
-        
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("UserID",userID);
+        cv.put("Nazwa",nazwa);
+        cv.put("DataDo",dataDo);
+        cv.put("Kategoria",Kategoria);
+        cv.put("Opis", opis);
+
+        if(db.insert(database_table, null, cv)==-1)
+            return false;
+        return true;
+
     }
 
 }
