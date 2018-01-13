@@ -69,9 +69,9 @@ public class DayPlanActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         Cursor cursor;
         if(b!=null)
-            cursor = dbTasks.getDayData(b.getString("date"));
+            cursor = dbTasks.getDayTasks(b.getString("date"));
         else
-        cursor = dbTasks.getDayData(Dates.getTodayDate());
+        cursor = dbTasks.getDayTasks(Dates.getTodayDate());
 
         while (cursor.moveToNext())
         {

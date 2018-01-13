@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     User user;
-    DatabaseHelper db;
 
     @Override
     protected void onResume()
@@ -32,9 +31,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        //Toast.makeText(getApplicationContext(),"liczba uzytkownikw:"+curs.getCount(),Toast.LENGTH_LONG).show();
         user = new User(this);
         updateView();
+        /*DatabaseTasks dbAims = new DatabaseTasks(getApplicationContext());
+        if(dbAims.insertAim(1,"Milion złotych","zarobię milion złotych", "2020-02-20","Pieniądze"))
+            Toast.makeText(getApplicationContext(),"Udało się",Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getApplicationContext(),"Nie udało się",Toast.LENGTH_LONG).show();*/
     }
 
     public void updateView()

@@ -11,14 +11,15 @@ import android.widget.Toast;
 
 public class DatabaseTasks extends SQLiteOpenHelper {
     public static  final String database_name = "Taski";
-    public static  final String database_table = "Tasks";
+    public static  final String table_tasks = "Tasks";
+    public static  final String table_aims = "Aims";
     public DatabaseTasks(Context context) {
         super(context, database_name, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " +database_table+ " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL("CREATE TABLE " +table_tasks+ " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " UserID INTEGER," +
                 " Nazwa TEXT," +
                 " Data TEXT," +
@@ -26,15 +27,23 @@ public class DatabaseTasks extends SQLiteOpenHelper {
                 " CzyZrobione INTEGER,"+
                 " Priorytet INTEGER,"+
                 " CelID INTEGER);");
+
+        db.execSQL("CREATE TABLE " + table_aims + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " UserID INTEGER," +
+                " Nazwa TEXT," +
+                " DataDo TEXT," +
+                " Opis TEXT," +
+                " Kategoria TEXT);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " +database_table);
+        db.execSQL("DROP TABLE IF EXISTS " +table_tasks);
+        db.execSQL("DROP TABLE IF EXISTS " +table_aims);
         onCreate(db);
     }
 
-    public boolean insertData(int userID ,String nazwa, String data, int czas, int czyZrobione,int priorytet)
+    public boolean insertTask(int userID ,String nazwa, String data, int czas, int czyZrobione,int priorytet)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -46,7 +55,7 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         cv.put("CzyZrobione",czyZrobione);
         cv.put("Priorytet",priorytet);
         cv.put("CelID",1);
-        if(db.insert(database_table, null, cv)==-1)
+        if(db.insert(table_tasks, null, cv)==-1)
             return false;
         return true;
     }
@@ -56,32 +65,57 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("CzyZrobione",czyZrobione);
-        db.update(database_table, cv, "ID=" + taskID, null);
+        db.update(table_tasks, cv, "ID=" + taskID, null);
     }
 
-    public SQLiteCursor getData()
+    public SQLiteCursor getTasks()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + database_table, null);
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks, null);
         return kursor;
     }
     public SQLiteCursor getOrderedData()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + database_table+ " ORDER BY date(Data) DESC", null);
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks+ " ORDER BY date(Data) DESC", null);
         return kursor;
     }
-    public SQLiteCursor getDayData(String date)
+    public SQLiteCursor getDayTasks(String date)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + database_table+ " WHERE Data='"+date+"'", null);
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks+ " WHERE Data='"+date+"'", null);
         return kursor;
     }
 
     public void deleteAllTasks()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + database_table);
+        db.execSQL("DELETE FROM " + table_tasks);
+    }
+
+
+    public boolean insertAim(int userID,String nazwa,String opis, String dataDo, String Kategoria)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("UserID",userID);
+        cv.put("Nazwa",nazwa);
+        cv.put("DataDo",dataDo);
+        cv.put("Kategoria",Kategoria);
+        cv.put("Opis", opis);
+
+        if(db.insert(table_aims, null, cv)==-1)
+            return false;
+        return true;
+
+    }
+
+    public SQLiteCursor getAims()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_aims, null);
+        return kursor;
     }
 
 }

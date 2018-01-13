@@ -24,8 +24,16 @@ public class DayActivity extends AppCompatActivity {
         });
 
         DatabaseTasks dbTasks = new DatabaseTasks(this);
-        Cursor cursor = dbTasks.getData();
+        Cursor cursor = dbTasks.getTasks();
         TextView tasks = (TextView) findViewById(R.id.tvTasks);
+
+        Cursor cursorAims = dbTasks.getAims();
+        while (cursorAims.moveToNext())
+        {
+            String toast = "\n"+cursorAims.getString(0)+", "+cursorAims.getString(1)+", "+cursorAims.getString(2)+", "
+                    +cursorAims.getString(3)+", "+ cursorAims.getString(4)+", "+ cursorAims.getString(5);
+            tasks.setText(tasks.getText()+toast);
+        }
 
         while (cursor.moveToNext())
     {

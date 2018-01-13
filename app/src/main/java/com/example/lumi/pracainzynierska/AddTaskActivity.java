@@ -99,7 +99,7 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         }
 
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
-        if(db.insertData(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), 0,spPriority.getSelectedItemPosition()))
+        if(db.insertTask(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), 0,spPriority.getSelectedItemPosition()))
         {
             finish();
         }else
