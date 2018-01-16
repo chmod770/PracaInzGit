@@ -50,6 +50,8 @@ public class DayPlanActivity extends AppCompatActivity {
             }
         });
 
+        if((new DatabaseTasks(this)).getTasks().getCount()==0)
+
         populateTaskList();
         populateListView();
         registerClickCallback();
@@ -73,6 +75,9 @@ public class DayPlanActivity extends AppCompatActivity {
         else
         cursor = dbTasks.getDayTasks(Dates.getTodayDate());
 
+        if(cursor.getCount()==0)
+            Toast.makeText(getApplicationContext(),"Aktualnie nie masz zadania ze wskazaną datą",Toast.LENGTH_SHORT).show();
+
         while (cursor.moveToNext())
         {
             boolean isDone=false;
@@ -84,7 +89,7 @@ public class DayPlanActivity extends AppCompatActivity {
     }
 
     private void populateListView() {
-        ArrayAdapter<Task> adapter = new MyListAdapter();
+        ArrayAdapter<Task> adapter = new MyListTaskAdapter();
         ListView list = (ListView)findViewById(R.id.lv_tasks);
         list.setAdapter(adapter);
     }
@@ -105,9 +110,9 @@ public class DayPlanActivity extends AppCompatActivity {
         });*/
     }
 
-    private class MyListAdapter extends ArrayAdapter<Task>
+    private class MyListTaskAdapter extends ArrayAdapter<Task>
     {
-        public MyListAdapter()
+        public MyListTaskAdapter()
         {
             super(DayPlanActivity.this, R.layout.task_items, myTasks);
         }

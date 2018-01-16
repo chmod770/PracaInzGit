@@ -20,8 +20,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/tvColID"
-        android:text="Imie"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        tools:text="Nazwa" />
 
     <TextView
         android:id="@+id/tvColSatisfaction"

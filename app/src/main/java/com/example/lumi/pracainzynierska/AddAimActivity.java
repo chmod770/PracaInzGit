@@ -22,28 +22,23 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-public class AddTaskActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener{
-
+public class AddAimActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_task);
+        setContentView(R.layout.add_aim);
         Button btn_add = (Button)(findViewById(R.id.btn_add));
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addTask();
+                addAim();
             }
         });
 
         EditText etDate = (EditText)findViewById(R.id.et_date);
 
         //setting not default data if exist
-        Bundle b = getIntent().getExtras();//stetting new Boundle which is stored in Extras
-        if(b!=null)//if Boundle doesnt exist thesre is not sent date
-            etDate.setHint(b.getString("date"));
-        else
-        etDate.setHint(Dates.getTodayDate());
+            etDate.setHint(Dates.getTodayDate());
 
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,11 +48,11 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
             }
         });
 
-        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
-        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.priority));
+        Spinner spCategory = (Spinner)findViewById(R.id.sp_category);
+        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddAimActivity.this,
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.categories));
         priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spPriority.setAdapter(priorityAdapter);
+        spCategory.setAdapter(priorityAdapter);
     }
 
 
@@ -68,12 +63,13 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         etDate.setText(date);
     }
 
-    private void addTask()
+
+    private void addAim()
     {
         EditText etName= (EditText)findViewById(R.id.et_name);
         EditText etDate= (EditText)findViewById(R.id.et_date);
-        EditText etTime= (EditText)findViewById(R.id.et_time);
-        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        EditText etDescription= (EditText)findViewById(R.id.et_description);
+        Spinner spCategory= (Spinner)findViewById(R.id.sp_category);
         String date;
 
         if(etDate.getText().toString().length()==0)
@@ -81,23 +77,18 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         else
             date=etDate.getText().toString();
 
-        if(etName.getText().length()==0||etTime.getText().length()==0)
+        if(etName.getText().length()==0||etDescription.getText().length()==0)
         {
             Toast.makeText(getApplicationContext(),"Wszystkie pola muszą być wypełnione",Toast.LENGTH_LONG).show();
             return;
         }
-        if(!tryParseInt(etTime.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "Czas musi być liczbą", Toast.LENGTH_LONG).show();
-                return;
-        }
 
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
-        if(db.insertTask(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), 0,spPriority.getSelectedItemPosition()))
+        if(db.insertAim(1, etName.getText().toString(), date, etDescription.getText().toString(), spCategory.getSelectedItem().toString()))
         {
             finish();
         }else
             Toast.makeText(getApplicationContext(), "Kolejne błędy", Toast.LENGTH_LONG).show();
-
     }
 
     boolean tryParseInt(String value) {

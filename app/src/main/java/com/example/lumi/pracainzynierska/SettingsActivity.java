@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextView tvName = (TextView)findViewById(R.id.tvName);
-                EditText etName = (EditText)findViewById(R.id.etName);
+                EditText etName = (EditText)findViewById(R.id.et_name);
                 tvName.setText("Imie: " +  etName.getText());
 
                 if(cursor.getCount()>0)

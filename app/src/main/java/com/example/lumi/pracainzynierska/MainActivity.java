@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
-            case R.id.btn_db:
-                startActivity(new Intent(MainActivity.this, DatabaseActivity.class));
+            case R.id.btn_aims:
+                startActivity(new Intent(MainActivity.this, AimsActivity.class));
                 break;
             case R.id.btn_tasks:
                 startActivity(new Intent(MainActivity.this, DayActivity.class));
