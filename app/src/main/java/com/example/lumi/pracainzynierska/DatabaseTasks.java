@@ -114,8 +114,23 @@ public class DatabaseTasks extends SQLiteOpenHelper {
     public SQLiteCursor getAims()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_aims, null);
-        return kursor;
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_aims, null);
+        return cursor;
+    }
+
+    public SQLiteCursor getAimsWithName(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_aims+" WHERE Nazwa='"+name+"'", null);
+        return cursor;
+    }
+
+    public boolean ifAimWithNameExits(String name)
+    {
+        SQLiteCursor cursor =this.getAimsWithName(name);
+        if(cursor.getCount()>0)
+            return true;
+        return false;
     }
 
 }

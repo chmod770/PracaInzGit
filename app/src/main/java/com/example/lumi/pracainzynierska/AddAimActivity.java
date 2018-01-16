@@ -35,6 +35,16 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
             }
         });
 
+        Button btn_back = (Button)(findViewById(R.id.btn_back));
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
         EditText etDate = (EditText)findViewById(R.id.et_date);
 
         //setting not default data if exist
@@ -64,31 +74,37 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
     }
 
 
-    private void addAim()
-    {
-        EditText etName= (EditText)findViewById(R.id.et_name);
-        EditText etDate= (EditText)findViewById(R.id.et_date);
-        EditText etDescription= (EditText)findViewById(R.id.et_description);
-        Spinner spCategory= (Spinner)findViewById(R.id.sp_category);
+    private void addAim() {
+        EditText etName = (EditText) findViewById(R.id.et_name);
+        EditText etDate = (EditText) findViewById(R.id.et_date);
+        EditText etDescription = (EditText) findViewById(R.id.et_description);
+        Spinner spCategory = (Spinner) findViewById(R.id.sp_category);
         String date;
 
-        if(etDate.getText().toString().length()==0)
-            date=etDate.getHint().toString();
+        if (etDate.getText().toString().length() == 0)
+            date = etDate.getHint().toString();
         else
-            date=etDate.getText().toString();
+            date = etDate.getText().toString();
 
-        if(etName.getText().length()==0||etDescription.getText().length()==0)
-        {
-            Toast.makeText(getApplicationContext(),"Wszystkie pola muszą być wypełnione",Toast.LENGTH_LONG).show();
+        if (etName.getText().length() == 0 || etDescription.getText().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Wszystkie pola muszą być wypełnione", Toast.LENGTH_LONG).show();
             return;
         }
 
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
+        if (db.ifAimWithNameExits(etName.getText().toString()))
+        {
+            Toast.makeText(getApplicationContext(), "Cel o takiej nazwie już istnieje", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
         if(db.insertAim(1, etName.getText().toString(), date, etDescription.getText().toString(), spCategory.getSelectedItem().toString()))
         {
             finish();
-        }else
+        }else {
             Toast.makeText(getApplicationContext(), "Kolejne błędy", Toast.LENGTH_LONG).show();
+        }
     }
 
     boolean tryParseInt(String value) {

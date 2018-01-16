@@ -49,6 +49,15 @@ public class AimsActivity extends AppCompatActivity {
         populateAimsList();
         populateAimAdapterView();
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populateAimsList();
+        populateAimAdapterView();
+    }
+
     private void populateAimsList()
     {
         DatabaseTasks db = new DatabaseTasks(this);

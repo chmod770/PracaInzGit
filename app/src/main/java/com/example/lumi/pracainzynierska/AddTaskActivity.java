@@ -20,10 +20,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener{
-
+    private ArrayList<String> myAimsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +55,10 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
             }
         });
 
-        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
-        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.priority));
-        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spPriority.setAdapter(priorityAdapter);
-    }
+        populatePrioritySpinner();
+        populateAimSpinner();
 
+    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -107,5 +106,28 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+    private void populateAimSpinner()
+    {
+        DatabaseTasks db = new DatabaseTasks(getApplicationContext());
+        Cursor cursor = db.getAims();
+        myAimsList= new ArrayList<>();
+        myAimsList.add("");
+        while (cursor.moveToNext())
+        {
+            myAimsList.add(cursor.getString(2));
+        }
+        Spinner spTask = (Spinner)findViewById(R.id.sp_task);
+        ArrayAdapter<String> myAimsAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.spinner_layout,
+                R.id.tv_txt,myAimsList);
+        spTask.setAdapter(myAimsAdapter);
+    }
+    private void populatePrioritySpinner()
+    {
+        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.priority));
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPriority.setAdapter(priorityAdapter);
     }
 }
