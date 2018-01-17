@@ -73,7 +73,9 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         EditText etDate= (EditText)findViewById(R.id.et_date);
         EditText etTime= (EditText)findViewById(R.id.et_time);
         Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        Spinner spAim= (Spinner)findViewById(R.id.sp_aim);
         String date;
+        int aimID=0;
 
         if(etDate.getText().toString().length()==0)
             date=etDate.getHint().toString();
@@ -91,7 +93,12 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         }
 
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
-        if(db.insertTask(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), 0,spPriority.getSelectedItemPosition()))
+        if(spAim.getSelectedItem()=="inne")
+        {
+            aimID=db.getIdAimWithName(spAim.getSelectedItem().toString());
+        }
+
+        if(db.insertTask(1, etName.getText().toString(), date, Integer.parseInt(etTime.getText().toString()), spPriority.getSelectedItemPosition(),aimID))
         {
             finish();
         }else
@@ -112,12 +119,12 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
         Cursor cursor = db.getAims();
         myAimsList= new ArrayList<>();
-        myAimsList.add("");
+        myAimsList.add("inne");
         while (cursor.moveToNext())
         {
             myAimsList.add(cursor.getString(2));
         }
-        Spinner spTask = (Spinner)findViewById(R.id.sp_task);
+        Spinner spTask = (Spinner)findViewById(R.id.sp_aim);
         ArrayAdapter<String> myAimsAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.spinner_layout,
                 R.id.tv_txt,myAimsList);
         spTask.setAdapter(myAimsAdapter);

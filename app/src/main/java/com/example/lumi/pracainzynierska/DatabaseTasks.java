@@ -111,6 +111,7 @@ public class DatabaseTasks extends SQLiteOpenHelper {
 
     }
 
+
     public SQLiteCursor getAims()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -118,19 +119,36 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public SQLiteCursor getAimsWithName(String name)
+    public SQLiteCursor getAimWithName(String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_aims+" WHERE Nazwa='"+name+"'", null);
         return cursor;
     }
 
+    public int getIdAimWithName(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_aims+" WHERE Nazwa='"+name+"'", null);
+        if(cursor.moveToNext())
+        {
+            return Integer.parseInt(cursor.getString(0));
+        }
+        return 0;
+    }
+
     public boolean ifAimWithNameExits(String name)
     {
-        SQLiteCursor cursor =this.getAimsWithName(name);
+        SQLiteCursor cursor =this.getAimWithName(name);
         if(cursor.getCount()>0)
             return true;
         return false;
+    }
+
+    public void deleteAllAims()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + table_aims);
     }
 
 }

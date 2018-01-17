@@ -44,7 +44,6 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
         });
 
 
-
         EditText etDate = (EditText)findViewById(R.id.et_date);
 
         //setting not default data if exist
@@ -97,7 +96,6 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
             Toast.makeText(getApplicationContext(), "Cel o takiej nazwie już istnieje", Toast.LENGTH_LONG).show();
             return;
         }
-
 
         if(db.insertAim(1, etName.getText().toString(), date, etDescription.getText().toString(), spCategory.getSelectedItem().toString()))
         {
