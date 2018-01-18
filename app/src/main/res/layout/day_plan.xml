@@ -13,7 +13,7 @@
         android:layout_above="@+id/btn_add"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView6" />
+        android:layout_below="@+id/tv_info" />
 
     <Button
         android:id="@+id/btn_add"
@@ -37,13 +37,14 @@
         android:text="Wróć" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tv_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Zadania Dnia"
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Zadania Dnia"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

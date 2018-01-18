@@ -1,5 +1,6 @@
 package com.example.lumi.pracainzynierska;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -50,8 +52,6 @@ public class DayPlanActivity extends AppCompatActivity {
             }
         });
 
-        if((new DatabaseTasks(this)).getTasks().getCount()==0)
-
         populateTaskList();
         populateListView();
         registerClickCallback();
@@ -75,8 +75,15 @@ public class DayPlanActivity extends AppCompatActivity {
         else
         cursor = dbTasks.getDayTasks(Dates.getTodayDate());
 
+        TextView tvInfo = (TextView)findViewById(R.id.tv_info);
         if(cursor.getCount()==0)
-            Toast.makeText(getApplicationContext(),"Aktualnie nie masz zadania ze wskazaną datą",Toast.LENGTH_SHORT).show();
+        {
+            tvInfo.setText("Zadania Dnia\n(Aktualnie nie masz zadania ze wskazaną datą)");
+        }else
+            tvInfo.setText("Zadania Dnia");
+
+
+            //Toast.makeText(getApplicationContext(),"Aktualnie nie masz zadania ze wskazaną datą",Toast.LENGTH_SHORT).show();
 
         while (cursor.moveToNext())
         {
@@ -86,6 +93,7 @@ public class DayPlanActivity extends AppCompatActivity {
             myTasks.add(new Task(Integer.parseInt(cursor.getString(0)),Integer.parseInt(cursor.getString(1)), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)),isDone));
         }
+
     }
 
     private void populateListView() {
@@ -97,17 +105,45 @@ public class DayPlanActivity extends AppCompatActivity {
 
     private void registerClickCallback() {
         ListView list = (ListView)findViewById(R.id.lv_tasks);
-        /*list.setItemsCanFocus(true);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Task clickedTask=myTasks.get(position);
-                String message = "you clicked position:"+position+", ID:"+clickedTask.getIdTask()+
-                        ", Nazwa:"+clickedTask.getNazwa();
-
-                Toast.makeText(DayPlanActivity.this, message, Toast.LENGTH_LONG).show();
+                deletingTaskPopUp(clickedTask.getIdTask());
+                return false;
             }
-        });*/
+        });
+    }
+
+    private void deletingTaskPopUp(final int idToDelete)
+    {
+        //Creating dialog interface which we need to set functions on alert dialog buttons
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //using switch where 'which' means which button was presed
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        DatabaseTasks db = new DatabaseTasks(getApplicationContext());
+                        db.deleteTaskWithId(idToDelete);
+                        populateTaskList();
+                        populateListView();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialog.cancel();
+                        break;
+                }
+            }
+        };
+
+        //building alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //setting buttons, and texts on alert buttons
+        builder.setMessage("Czy chcesz usunąć to zadanie ?").setNegativeButton("Nie", dialogClickListener)
+                .setPositiveButton("Tak", dialogClickListener)
+                .show();
     }
 
     private class MyListTaskAdapter extends ArrayAdapter<Task>

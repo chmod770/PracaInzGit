@@ -43,7 +43,7 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertTask(int userID ,String nazwa, String data, int czas, int czyZrobione,int priorytet)
+    public boolean insertTask(int userID ,String nazwa, String data, int czas, int priorytet,int celID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -52,9 +52,9 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         cv.put("Nazwa",nazwa);
         cv.put("Data",data);
         cv.put("Czas",czas);
-        cv.put("CzyZrobione",czyZrobione);
+        cv.put("CzyZrobione",0);
         cv.put("Priorytet",priorytet);
-        cv.put("CelID",1);
+        cv.put("CelID",celID);
         if(db.insert(table_tasks, null, cv)==-1)
             return false;
         return true;
@@ -93,6 +93,10 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + table_tasks);
     }
 
+    public void deleteTaskWithId(int idToDelete) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + table_tasks + " WHERE ID='"+idToDelete+"'");
+    }
 
     public boolean insertAim(int userID,String nazwa,String opis, String dataDo, String Kategoria)
     {
@@ -151,4 +155,9 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + table_aims);
     }
 
+    public void deleteAimWithIdAndTasks(int idToDelete) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.execSQL("DELETE FROM " + table_aims + " WHERE ID='"+idToDelete+"'");
+            db.execSQL("DELETE FROM " + table_tasks + " WHERE CelID='"+idToDelete+"'");
+    }
 }

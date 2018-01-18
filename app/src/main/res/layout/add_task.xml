@@ -103,9 +103,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignStart="@+id/et_time"
-        android:layout_alignTop="@+id/textView5"
-        android:textSize="24sp"
-        />
+        android:layout_alignTop="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView8"
@@ -136,6 +134,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/et_date"
-        android:layout_alignStart="@+id/et_date" />
+        android:layout_alignStart="@+id/et_date"
+        />
 
 </RelativeLayout>
