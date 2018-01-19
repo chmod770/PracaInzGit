@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    DatabaseHelper db;
+    DatabaseTasks db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        db=new DatabaseHelper(getApplicationContext());
-        final Cursor cursor = db.pobierzDane();
+        db=new DatabaseTasks(getApplicationContext());
+        final Cursor cursor = db.getUsers();
         //wczytywanie imienia z bazy danych
         if(cursor.getCount()>0)
         {
@@ -43,9 +43,9 @@ public class SettingsActivity extends AppCompatActivity {
                 tvName.setText("Imie: " +  etName.getText());
 
                 if(cursor.getCount()>0)
-                 db.updateData(etName.getText()+"",cursor.getString(2)+"");
+                 db.updateUsers(etName.getText()+"",cursor.getString(2)+"");
                 else
-                    db.updateData(etName.getText()+"","6");
+                    db.updateUsers(etName.getText()+"","6");
 
             }
         });

@@ -13,6 +13,8 @@ public class DatabaseTasks extends SQLiteOpenHelper {
     public static  final String database_name = "Taski";
     public static  final String table_tasks = "Tasks";
     public static  final String table_aims = "Aims";
+    public static  final String table_users = "Users";
+
     public DatabaseTasks(Context context) {
         super(context, database_name, null, 1);
     }
@@ -34,12 +36,16 @@ public class DatabaseTasks extends SQLiteOpenHelper {
                 " DataDo TEXT," +
                 " Opis TEXT," +
                 " Kategoria TEXT);");
+        db.execSQL("CREATE TABLE " + table_users + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "Imie TEXT, " +
+                "Zadowolenie TEXT);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " +table_tasks);
         db.execSQL("DROP TABLE IF EXISTS " +table_aims);
+        db.execSQL("DROP TABLE IF EXISTS " +table_users);
         onCreate(db);
     }
 
@@ -115,7 +121,6 @@ public class DatabaseTasks extends SQLiteOpenHelper {
 
     }
 
-
     public SQLiteCursor getAims()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -159,5 +164,37 @@ public class DatabaseTasks extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL("DELETE FROM " + table_aims + " WHERE ID='"+idToDelete+"'");
             db.execSQL("DELETE FROM " + table_tasks + " WHERE CelID='"+idToDelete+"'");
+    }
+
+    public boolean insertUser(String imie, String zadowolenie)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("Imie",imie);
+        cv.put("Zadowolenie",zadowolenie);
+        if(db.insert(table_users, null, cv)==-1)
+            return false;
+        return true;
+    }
+
+    public boolean updateUsers(String name, String satisfaction)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + table_users + " SET Imie='"+name+"'");
+        db.execSQL("UPDATE " + table_users + " SET Zadowolenie='"+satisfaction+"'");
+        return true;
+    }
+    public SQLiteCursor getUsers()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_users, null);
+        return kursor;
+    }
+
+    public boolean deleteAllUsers()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM "+ table_users);
+        return false;
     }
 }

@@ -41,8 +41,8 @@ public class User {
 
     public User(Context context)
     {
-        DatabaseHelper db= new DatabaseHelper(context);
-        SQLiteCursor kursor = db.pobierzDane();
+        DatabaseTasks db= new DatabaseTasks(context);
+        SQLiteCursor kursor = db.getUsers();
         if(kursor.getCount()>0)
         {
             kursor.moveToNext();
@@ -50,17 +50,17 @@ public class User {
             this.setImie(kursor.getString(1));
             this.setZadowolenie(Integer.parseInt(kursor.getString(2)));
         }else {
-            db.insertData("Niewiadomy","1");
-            this.setImie("brak");
+            db.insertUser("-nowy-","1");
+            this.setImie("-nowy-");
             this.setZadowolenie(1);
         }
     }
     public void update(String name, int satisfaction,Context context)
     {
-        DatabaseHelper db= new DatabaseHelper(context);
+        DatabaseTasks db= new DatabaseTasks(context);
         this.setImie(name);
         this.setZadowolenie(satisfaction);
-        db.updateData(name, satisfaction+"");
+        db.updateUsers(name, satisfaction+"");
     }
 
 }

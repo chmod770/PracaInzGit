@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     {
         TextView data = (TextView)findViewById(R.id.tvData);
         data.setText("User "+ user.getImie() + "\nTwoje zadaowolenie\n" + user.getZadowolenie());
-
     }
 
     public void buttonOnClick(View view)

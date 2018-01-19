@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 
 public class DatabaseActivity extends AppCompatActivity {
-    DatabaseHelper db;
+    DatabaseTasks db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +27,8 @@ public class DatabaseActivity extends AppCompatActivity {
         TextView tvName = (TextView)findViewById(R.id.tvColName);
         TextView tvSatisfaction = (TextView)findViewById(R.id.tvColSatisfaction);
 
-        db = new DatabaseHelper(this);
-        Cursor cursor= db.pobierzDane();
+        db = new DatabaseTasks(this);
+        Cursor cursor= db.getUsers();
         while (cursor.moveToNext())
         {
             tvID.setText(tvID.getText()+"\n"+cursor.getString(0));
