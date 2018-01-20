@@ -20,28 +20,31 @@
         android:id="@+id/item_tv_dataDo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/item_tv_kategoria"
-        android:layout_centerHorizontal="true"
-        tools:text="TextView" />
+        tools:text="TextView"
+        android:layout_alignBaseline="@+id/item_tv_kategoria"
+        android:layout_alignBottom="@+id/item_tv_kategoria"
+        android:layout_alignLeft="@+id/item_tv_name"
+        android:layout_alignStart="@+id/item_tv_name" />
 
     <TextView
         android:id="@+id/item_tv_kategoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/item_tv_opis"
-        android:layout_alignParentEnd="true"
+        tools:text="TextView"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/item_tv_name"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        tools:text="TextView" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
 
     <TextView
         android:id="@+id/item_tv_opis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/item_tv_name"
-        android:layout_alignStart="@+id/item_tv_name"
-        android:layout_below="@+id/item_tv_name"
-        android:layout_marginTop="11dp"
-        tools:text="TextView" />
+        android:layout_marginTop="19dp"
+        tools:text="TextView"
+        android:layout_below="@+id/item_tv_dataDo"
+        android:layout_alignLeft="@+id/item_tv_dataDo"
+        android:layout_alignStart="@+id/item_tv_dataDo" />
 </RelativeLayout>

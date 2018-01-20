@@ -72,7 +72,6 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
         etDate.setText(date);
     }
 
-
     private void addAim() {
         EditText etName = (EditText) findViewById(R.id.et_name);
         EditText etDate = (EditText) findViewById(R.id.et_date);
@@ -97,8 +96,12 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
             return;
         }
 
-        if(db.insertAim(1, etName.getText().toString(), date, etDescription.getText().toString(), spCategory.getSelectedItem().toString()))
+        String name = etName.getText().toString();
+        String description = etDescription.getText().toString();
+        String category = spCategory.getSelectedItem().toString();
+        if(db.insertAim(1, name, description, date, category))
         {
+            db.close();
             finish();
         }else {
             Toast.makeText(getApplicationContext(), "Kolejne błędy", Toast.LENGTH_LONG).show();

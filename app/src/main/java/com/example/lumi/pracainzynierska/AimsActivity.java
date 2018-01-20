@@ -157,15 +157,15 @@ public class AimsActivity extends AppCompatActivity {
 
             //fill dateTo field
             TextView dateTo = (TextView)itemView.findViewById(R.id.item_tv_dataDo);
-            dateTo.setText(currentAim.getDataDo());
+            dateTo.setText("Do dnia: \n"+currentAim.getDataDo());
 
             //fill category field
             TextView category = (TextView)itemView.findViewById(R.id.item_tv_kategoria);
-            category.setText(currentAim.getKategoria());
+            category.setText("Kategoria: \n"+currentAim.getKategoria());
 
             //fill description field
             TextView description= (TextView)itemView.findViewById(R.id.item_tv_opis);
-            description.setText(currentAim.getOpis());
+            description.setText("Opis:\n"+currentAim.getOpis());
 
             return itemView;
         }

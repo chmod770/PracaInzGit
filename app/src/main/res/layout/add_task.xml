@@ -24,7 +24,9 @@
         android:inputType="textPersonName"
         android:layout_below="@+id/textView8"
         android:layout_alignLeft="@+id/textView8"
-        android:layout_alignStart="@+id/textView8" />
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
 
     <EditText
         android:id="@+id/et_time"
@@ -35,7 +37,7 @@
         android:layout_below="@+id/et_name"
         android:ems="10"
         android:hint="Wprowadź Czas"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/et_date"
@@ -69,10 +71,10 @@
         android:layout_height="wrap_content"
         android:text="Data"
         android:textSize="24sp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="21dp"
         android:layout_below="@+id/textView5"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView4"
@@ -82,7 +84,7 @@
         android:layout_alignBottom="@+id/et_time"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:text="Czas"
+        android:text="Czas(min)"
         android:textSize="22sp" />
 
     <TextView
@@ -123,7 +125,7 @@
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/et_date"
         android:layout_marginTop="15dp"
-        android:text="Zadanie"
+        android:text="Cel"
         android:textSize="22sp" />
 
     <Spinner

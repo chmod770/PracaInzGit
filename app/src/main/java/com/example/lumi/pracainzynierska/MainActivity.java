@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, SetNameActivity.class));
 
         setContentView(R.layout.main_activity);
-
         updateView();
 
     }
