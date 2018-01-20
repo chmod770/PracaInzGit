@@ -30,43 +30,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
         user = new User(this);
+        if(user.getImie().length()==0)
+        startActivity(new Intent(MainActivity.this, SetNameActivity.class));
+
+        setContentView(R.layout.main_activity);
+
         updateView();
-        /*DatabaseTasks dbAims = new DatabaseTasks(getApplicationContext());
-        if(dbAims.insertAim(1,"Milion złotych","zarobię milion złotych", "2020-02-20","Pieniądze"))
-            Toast.makeText(getApplicationContext(),"Udało się",Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(getApplicationContext(),"Nie udało się",Toast.LENGTH_LONG).show();*/
+
     }
 
     public void updateView()
     {
         TextView data = (TextView)findViewById(R.id.tvData);
-        data.setText("User "+ user.getImie() + "\nTwoje zadaowolenie\n" + user.getZadowolenie());
+        data.setText("Witaj! "+ user.getImie());
     }
 
     public void buttonOnClick(View view)
     {
         switch(view.getId())
         {
-            case R.id.btn_1:
-                user.update(user.getImie(),1,this);
-                setNotification();
-                break;
-
-            case R.id.btn_2:
-                user.update(user.getImie(),2,this);
-                break;
-
-            case R.id.btn_3:
-                user.update(user.getImie(),3,this);
-                break;
-            case R.id.btn_4:
-                user.update(user.getImie(),4,this);
-                break;
-            case R.id.btn_5:
-                user.update(user.getImie(),5,this);
+            case R.id.btn_ok:
+                startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                 break;
             case R.id.btn_calendar:
                 startActivity(new Intent(MainActivity.this, CalendarActivity.class));

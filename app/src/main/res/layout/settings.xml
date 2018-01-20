@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Imię: Marek"
+        android:text="Nazwa: Marek"
         android:textAlignment="center"
         android:textSize="24sp" />
 
@@ -34,7 +34,7 @@
         android:layout_below="@+id/tvName"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="Zmień Imię"
+        android:hint="Zmień nazwę"
         android:inputType="textPersonName"
         android:textAlignment="center" />
 

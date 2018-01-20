@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
         {
             cursor.moveToNext();
             TextView tvName = (TextView)findViewById(R.id.tvName);
-            tvName.setText("Imie: " + cursor.getString(1));
+            tvName.setText("Nazwa: " + cursor.getString(1));
         }
 
         Button btnBack = (Button)findViewById(R.id.btn_add);
@@ -40,12 +41,16 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextView tvName = (TextView)findViewById(R.id.tvName);
                 EditText etName = (EditText)findViewById(R.id.et_name);
-                tvName.setText("Imie: " +  etName.getText());
-
-                if(cursor.getCount()>0)
-                 db.updateUsers(etName.getText()+"",cursor.getString(2)+"");
-                else
-                    db.updateUsers(etName.getText()+"","6");
+                if(etName.getText().length()<3)
+                {
+                    Toast.makeText(getApplicationContext(),"Nazwa użytkownika musi się składać z minimum trzech znaków ",Toast.LENGTH_LONG).show();
+                }else {
+                    tvName.setText("Imie: " + etName.getText());
+                    if (cursor.getCount() > 0)
+                        db.updateUsers(etName.getText() + "", cursor.getString(2) + "");
+                    else
+                        db.updateUsers(etName.getText() + "", "6");
+                }
 
             }
         });

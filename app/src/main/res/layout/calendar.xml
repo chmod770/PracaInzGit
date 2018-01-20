@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_dark"
+    android:background="@color/colorAccent"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.lumi.pracainzynierska.CalendarActivity">
@@ -13,20 +12,21 @@
         android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        android:text="Main"
-        android:textSize="24sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:text="Main"
+        android:textSize="24sp"
+        android:textColor="#fff" />
 
     <CalendarView
         android:id="@+id/cv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:background="@android:color/background_light"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:background="@android:color/background_light" />
 
 </RelativeLayout>

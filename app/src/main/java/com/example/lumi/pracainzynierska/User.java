@@ -50,11 +50,12 @@ public class User {
             this.setImie(kursor.getString(1));
             this.setZadowolenie(Integer.parseInt(kursor.getString(2)));
         }else {
-            db.insertUser("-nowy-","1");
-            this.setImie("-nowy-");
+            db.insertUser("","1");
+            this.setImie("");
             this.setZadowolenie(1);
         }
     }
+
     public void update(String name, int satisfaction,Context context)
     {
         DatabaseTasks db= new DatabaseTasks(context);
