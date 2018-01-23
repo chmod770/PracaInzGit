@@ -198,12 +198,19 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         return false;
     }
 
-    public int numberAimsInCategory(String category)
+    public int numberTasksInCategory(String category)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteCursor kursor = (SQLiteCursor) db.rawQuery
                 ("SELECT * FROM "+table_aims+" ta INNER JOIN "+table_tasks+" tt ON ta.ID=tt.CelID WHERE ta.Kategoria='"+category+"'"
                         , null);
+        return kursor.getCount();
+    }
+
+    public int numberAimsInCategory(String category) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery
+                ("SELECT * FROM "+table_aims+" WHERE Kategoria='"+category+"'", null);
         return kursor.getCount();
     }
 }

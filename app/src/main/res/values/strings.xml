@@ -2,7 +2,7 @@
     <string name="app_name">PracaInzynierska</string>
     <string-array name="categories">
         <item>Rodzina</item>
-        <item>Pieniądze</item>
+        <item>Finanse</item>
         <item>Edukacja</item>
         <item>Zdrowie</item>
         <item>Kontakty</item>

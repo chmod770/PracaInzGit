@@ -22,20 +22,12 @@ public class StatisticsActivity extends AppCompatActivity{
         setContentView(R.layout.statistics);
 
         setupPieChart();
-
-        Button btn_back = (Button)findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void setupPieChart()
     {
         int[] amounts=new int[5];
-        String[] categories = {"Pieniądze","Edukacja","Zdrowie","Kontakty","inne"};
+        String[] categories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
         DatabaseTasks db = new DatabaseTasks(this);
         for(int i = 0 ; i < categories.length;i++)
         {
@@ -48,13 +40,16 @@ public class StatisticsActivity extends AppCompatActivity{
             pieEntries.add(new PieEntry(amounts[i],categories[i]));
         }
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,"Liczba celów różnych kategorii");
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"Cele");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setValueTextSize(18);
+
 
         PieData pieData = new PieData(pieDataSet);
 
         Chart chart = (Chart)findViewById(R.id.chart);
         chart.setData(pieData);
+        chart.animateY(1000);
         chart.invalidate();
     }
 }
