@@ -14,5 +14,9 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string-array name="statsKind">
+        <item>Liczba celów w kategorii</item>
+        <item>Liczba zadań w kategorii</item>
+    </string-array>
     <string name="TextView"></string>
 </resources>
