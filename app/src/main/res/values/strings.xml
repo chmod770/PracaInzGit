@@ -5,7 +5,7 @@
         <item>Pieniądze</item>
         <item>Edukacja</item>
         <item>Zdrowie</item>
-        <item>Kontakty towarzyskie</item>
+        <item>Kontakty</item>
     </string-array>
     <string-array name="priority">
         <item>1</item>

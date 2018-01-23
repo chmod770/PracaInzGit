@@ -5,16 +5,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.icu.util.Calendar;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     User user;
@@ -49,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
     {
         switch(view.getId())
         {
-            case R.id.btn_ok:
-                startActivity(new Intent(MainActivity.this, CalendarActivity.class));
-                break;
+
             case R.id.btn_calendar:
                 startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                 break;
@@ -66,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_day:
                 startActivity(new Intent(MainActivity.this, DayPlanActivity.class));
+                break;
+            case R.id.btn_statistics:
+                startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
                 break;
         }
         updateView();

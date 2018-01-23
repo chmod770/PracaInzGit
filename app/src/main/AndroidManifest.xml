@@ -28,6 +28,7 @@
             android:noHistory="true"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".SetNameActivity" android:noHistory="true"></activity>
+        <activity android:name=".StatisticsActivity"></activity>
 
     </application>
 

@@ -67,7 +67,6 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
         spCategory.setAdapter(priorityAdapter);
     }
 
-
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date =Dates.getRefactoredDate(year,month,dayOfMonth);

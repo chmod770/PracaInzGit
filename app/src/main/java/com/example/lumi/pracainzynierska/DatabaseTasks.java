@@ -197,4 +197,13 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM "+ table_users);
         return false;
     }
+
+    public int numberAimsInCategory(String category)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery
+                ("SELECT * FROM "+table_aims+" ta INNER JOIN "+table_tasks+" tt ON ta.ID=tt.CelID WHERE ta.Kategoria='"+category+"'"
+                        , null);
+        return kursor.getCount();
+    }
 }

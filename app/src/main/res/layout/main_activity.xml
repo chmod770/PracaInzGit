@@ -5,17 +5,6 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:id="@+id/tvQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:text="Jak się dziś czujesz ?"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_below="@+id/btn_day"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:id="@+id/btn_calendar"
         android:layout_width="match_parent"
@@ -72,15 +61,21 @@
 
     <Button
         android:id="@+id/btn_tasks"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_day"
         android:onClick="buttonOnClick"
         android:text="Taski"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/btn_statistics"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_day"
+        android:layout_centerHorizontal="true"
+        android:onClick="buttonOnClick"
+        android:text="Statystyki" />
 
 
 </RelativeLayout>
