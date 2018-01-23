@@ -31,10 +31,19 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
         Button btn_add = (Button)(findViewById(R.id.btn_add));
+        Button btn_back = (Button)(findViewById(R.id.btn_back));
+
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addTask();
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -57,7 +66,6 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
 
         populatePrioritySpinner();
         populateAimSpinner();
-
     }
 
     @Override
@@ -117,15 +125,19 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
     }
     private void populateAimSpinner()
     {
+        //creating Database obj, loading aims from database
         DatabaseTasks db = new DatabaseTasks(getApplicationContext());
         Cursor cursor = db.getAims();
         myAimsList= new ArrayList<>();
         myAimsList.add("inne");
         while (cursor.moveToNext())
         {
+            //with index 2 is Name of aim in task
             myAimsList.add(cursor.getString(2));
         }
+
         Spinner spTask = (Spinner)findViewById(R.id.sp_aim);
+        //create Adapter from layout(spinner_layout) stored in layout directory
         ArrayAdapter<String> myAimsAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.spinner_layout,
                 R.id.tv_txt,myAimsList);
         spTask.setAdapter(myAimsAdapter);
@@ -133,6 +145,7 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
     private void populatePrioritySpinner()
     {
         Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        //creating adapter with TextView which store strings (aims) loaded from database
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.priority));
         priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

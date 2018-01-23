@@ -57,9 +57,12 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
             }
         });
 
+        //create handle to Categories Spiner
         Spinner spCategory = (Spinner)findViewById(R.id.sp_category);
+        //create array adapter storing items containing one string(category)
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddAimActivity.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.categories));
+        //set categories from <array-list> stored in strings.xml to adapter
         priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategory.setAdapter(priorityAdapter);
     }
@@ -107,7 +110,7 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
             Toast.makeText(getApplicationContext(), "Kolejne błędy", Toast.LENGTH_LONG).show();
         }
     }
-
+    /*
     boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);
@@ -115,5 +118,5 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
         } catch (NumberFormatException e) {
             return false;
         }
-    }
+    }*/
 }
