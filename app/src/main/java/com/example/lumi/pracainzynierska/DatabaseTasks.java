@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
-
 
 public class DatabaseTasks extends SQLiteOpenHelper {
     public static  final String database_name = "Taski";
@@ -38,7 +35,9 @@ public class DatabaseTasks extends SQLiteOpenHelper {
                 " Kategoria TEXT);");
         db.execSQL("CREATE TABLE " + table_users + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "Imie TEXT, " +
-                "Zadowolenie TEXT);");
+                "GodzinaPrzypomnienia TEXT, " +
+                "MinPriorytet INTEGER, " +
+                "CzyWlaczane INTEGER);");
     }
 
     @Override
@@ -77,20 +76,20 @@ public class DatabaseTasks extends SQLiteOpenHelper {
     public SQLiteCursor getTasks()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks, null);
-        return kursor;
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks, null);
+        return cursor;
     }
     public SQLiteCursor getOrderedData()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks+ " ORDER BY date(Data) DESC", null);
-        return kursor;
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks+ " ORDER BY date(Data) DESC", null);
+        return cursor;
     }
     public SQLiteCursor getDayTasks(String date)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks+ " WHERE Data='"+date+"'", null);
-        return kursor;
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_tasks+ " WHERE Data='"+date+"'", null);
+        return cursor;
     }
 
     public void deleteAllTasks()
@@ -166,29 +165,44 @@ public class DatabaseTasks extends SQLiteOpenHelper {
             db.execSQL("DELETE FROM " + table_tasks + " WHERE CelID='"+idToDelete+"'");
     }
 
-    public boolean insertUser(String imie, String zadowolenie)
+    public boolean insertUser(String imie,String godzinaPrzypomnienia, int minPriorytet, int czyWlaczane)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("Imie",imie);
-        cv.put("Zadowolenie",zadowolenie);
+        cv.put("GodzinaPrzypomnienia",godzinaPrzypomnienia);
+        cv.put("MinPriorytet",minPriorytet);
+        cv.put("CzyWlaczane",czyWlaczane);
         if(db.insert(table_users, null, cv)==-1)
             return false;
         return true;
     }
 
-    public boolean updateUsers(String name, String satisfaction)
+    public boolean insertUser(String imie)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("Imie",imie);
+        cv.put("GodzinaPrzypomnienia","13:00");
+        cv.put("MinPriorytet",5);
+        cv.put("CzyWlaczane",0);
+
+        if(db.insert(table_users, null, cv)==-1)
+            return false;
+        return true;
+    }
+
+    public void updateUserName(String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE " + table_users + " SET Imie='"+name+"'");
-        db.execSQL("UPDATE " + table_users + " SET Zadowolenie='"+satisfaction+"'");
-        return true;
     }
+
     public SQLiteCursor getUsers()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_users, null);
-        return kursor;
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM " + table_users, null);
+        return cursor;
     }
 
     public boolean deleteAllUsers()
@@ -201,16 +215,16 @@ public class DatabaseTasks extends SQLiteOpenHelper {
     public int numberTasksInCategory(String category)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery
                 ("SELECT * FROM "+table_aims+" ta INNER JOIN "+table_tasks+" tt ON ta.ID=tt.CelID WHERE ta.Kategoria='"+category+"'"
                         , null);
-        return kursor.getCount();
+        return cursor.getCount();
     }
 
     public int numberAimsInCategory(String category) {
         SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteCursor kursor = (SQLiteCursor) db.rawQuery
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery
                 ("SELECT * FROM "+table_aims+" WHERE Kategoria='"+category+"'", null);
-        return kursor.getCount();
+        return cursor.getCount();
     }
 }

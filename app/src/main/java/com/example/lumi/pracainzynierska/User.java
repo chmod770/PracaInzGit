@@ -2,25 +2,43 @@ package com.example.lumi.pracainzynierska;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteCursor;
-import android.widget.Toast;
 
 public class User {
 
     private  int id;
     private String imie;
-    private int zadowolenie;
+    private String godzinaPrzypomnienia;
+    private int minPriotytet;
+    private int czyWlaczane;
 
-    public int getZadowolenie() {
-        return zadowolenie;
+    public String getGodzinaPrzypomnienia() {
+        return godzinaPrzypomnienia;
     }
 
-    public void setZadowolenie(int zadowolenie) {
-        if(zadowolenie>5||zadowolenie<1) {
-            this.zadowolenie = 1;
-        }
-        else
-        this.zadowolenie = zadowolenie;
+    public void setGodzinaPrzypomnienia(String godzinaPrzypomnienia) {
+        this.godzinaPrzypomnienia = godzinaPrzypomnienia;
+    }
 
+    public int getMinPriotytet() {
+        return minPriotytet;
+    }
+
+    public void setMinPriotytet(int minPriotytet) {
+        this.minPriotytet = minPriotytet;
+    }
+    public void setMinPriotytet(String minPriotytet) {
+        this.minPriotytet = Integer.parseInt(minPriotytet);
+    }
+
+    public int getCzyWlaczane() {
+        return czyWlaczane;
+    }
+
+    public void setCzyWlaczane(int czyWlaczane) {
+        this.czyWlaczane = czyWlaczane;
+    }
+    public void setCzyWlaczane(String czyWlaczane) {
+        this.czyWlaczane = Integer.parseInt(czyWlaczane);
     }
 
     public String getImie() {
@@ -42,26 +60,26 @@ public class User {
     public User(Context context)
     {
         DatabaseTasks db= new DatabaseTasks(context);
-        SQLiteCursor kursor = db.getUsers();
-        if(kursor.getCount()>0)
+        SQLiteCursor cursor= db.getUsers();
+        if(cursor.getCount()>0)
         {
-            kursor.moveToNext();
-            this.setId(kursor.getInt(0));
-            this.setImie(kursor.getString(1));
-            this.setZadowolenie(Integer.parseInt(kursor.getString(2)));
+            cursor.moveToNext();
+            this.setId(cursor.getInt(0));
+            this.setImie(cursor.getString(1));
+            this.setGodzinaPrzypomnienia(cursor.getString(2));
+            this.setMinPriotytet(cursor.getString(3));
+            this.setCzyWlaczane(cursor.getString(4));
         }else {
-            db.insertUser("","1");
+            db.insertUser("");
             this.setImie("");
-            this.setZadowolenie(1);
         }
     }
 
-    public void update(String name, int satisfaction,Context context)
+    public void update(String name,Context context)
     {
         DatabaseTasks db= new DatabaseTasks(context);
         this.setImie(name);
-        this.setZadowolenie(satisfaction);
-        db.updateUsers(name, satisfaction+"");
+        db.updateUserName(name);
     }
 
 }

@@ -25,33 +25,26 @@ public class Dates {
         int month =(resultdate.getMonth())+1;
         int dayOfMonth =resultdate.getDate();
 
-        String date ="";
-        date+=year;
-        if(month+1<10)
-            date+="-0"+(month)+"-";
-        else
-            date+="-"+(month)+"-";
-        if(dayOfMonth<10)
-            date+="0"+dayOfMonth;
-        else
-            date+=+dayOfMonth;
-
-        return date;
+        return getRefactoredDate(year,month+1,dayOfMonth);
 
     }
+
     public static String getRefactoredDate(int year, int month, int dayOfMonth)
     {
-        String date = "";
-        date+=year;
-        if(month+1<10)
-            date+="-0"+(month+1)+"-";
-        else
-            date+="-"+(month+1)+"-";
-        if(dayOfMonth<10)
-            date+="0"+dayOfMonth;
-        else
-            date+=+dayOfMonth;
 
-        return date;
+        return year+"-"+refactorLessNumber(month)+"-"+refactorLessNumber(dayOfMonth);
+    }
+
+    public static String getRefactoredTime(int hour, int minutes)
+    {
+        return refactorLessNumber(hour)+":"+refactorLessNumber(minutes);
+    }
+
+    private static String refactorLessNumber(int number)
+    {
+        if(number<10)
+            return "0"+number;
+        else
+            return number+"";
     }
 }

@@ -88,13 +88,16 @@ public class StatisticsActivity extends AppCompatActivity{
 
     private void displayChart(String kind)
     {
+        //setting pieData sets
         PieDataSet pieDataSet = new PieDataSet(pieEntries,kind);
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieDataSet.setValueTextSize(18);
 
+        //creating pie data with sets
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueFormatter(new MyValueFormatter());
 
+        //creating new chart
         Chart chart = (Chart)findViewById(R.id.chart);
         chart.setData(pieData);
         chart.animateY(1000);
@@ -105,7 +108,7 @@ public class StatisticsActivity extends AppCompatActivity{
     private class MyValueFormatter implements IValueFormatter {
         @Override
         public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-            
+
             return new DecimalFormat("###,###,##0").format(value);
         }
     }

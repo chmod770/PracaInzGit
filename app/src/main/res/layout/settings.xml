@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lumi.pracainzynierska.CalendarActivity"
-    android:background="#fffefe">
+    android:background="#ffffff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:focusedByDefault="false"
+    android:orientation="vertical"
+    tools:context="com.example.lumi.pracainzynierska.CalendarActivity">
 
     <Button
         android:id="@+id/btn_add"
@@ -36,7 +39,9 @@
         android:ems="10"
         android:hint="Zmień nazwę"
         android:inputType="textPersonName"
-        android:textAlignment="center" />
+        android:selectAllOnFocus="false"
+        android:textAlignment="center"
+        android:textColorLink="@android:color/background_dark" />
 
     <Button
         android:id="@+id/btnSave"
@@ -46,4 +51,87 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="Zapisz" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/et_name"
+        android:layout_marginTop="24dp"
+        android:text="Przypomnienia"
+        android:textSize="18sp" />
+
+    <Switch
+        android:id="@+id/sw_doSetNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView11"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/et_hour"
+        android:layout_alignStart="@+id/et_hour"
+        android:layout_below="@+id/et_name"
+        android:text="Godzina" />
+
+    <EditText
+        android:id="@+id/et_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView14"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/textView11"
+        android:layout_toRightOf="@+id/textView11"
+        android:focusable="false"
+        android:hint="12:00"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/et_hour"
+        android:layout_toRightOf="@+id/et_hour"
+        android:text="Min priorytet" />
+
+    <Spinner
+        android:id="@+id/spPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/et_hour"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/et_hour"
+        android:layout_marginTop="15dp"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Czy włączone"
+        android:layout_below="@+id/et_name"
+        android:layout_toRightOf="@+id/textView15"
+        android:layout_toEndOf="@+id/textView15"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
 </RelativeLayout>

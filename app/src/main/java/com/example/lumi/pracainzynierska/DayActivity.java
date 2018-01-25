@@ -36,11 +36,11 @@ public class DayActivity extends AppCompatActivity {
         }
 
         while (cursor.moveToNext())
-    {
-        String toast = "\n"+cursor.getString(0)+", "+cursor.getString(1)+", "+cursor.getString(2)+", "
+        {
+            String toast = "\n"+cursor.getString(0)+", "+cursor.getString(1)+", "+cursor.getString(2)+", "
                 +cursor.getString(3)+", "+ cursor.getString(4)+", "+ cursor.getString(5)+", "+ cursor.getString(6)
                 +", "+ cursor.getString(7);
-        tasks.setText(tasks.getText()+toast);
-    }
+            tasks.setText(tasks.getText()+toast);
+        }
     }
 }

@@ -29,7 +29,7 @@ public class SetNameActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(),"Nazwa użytkownika musi się składać z minimum trzech znaków ",Toast.LENGTH_LONG).show();
         }else {
                 DatabaseTasks db = new DatabaseTasks(this);
-                db.updateUsers(etName.getText() + "", "5");
+                db.updateUserName(etName.getText().toString());
                 finish();
         }
     }

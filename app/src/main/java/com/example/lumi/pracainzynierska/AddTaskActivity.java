@@ -1,15 +1,9 @@
 package com.example.lumi.pracainzynierska;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
 import android.database.Cursor;
-import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,12 +11,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener{
     private ArrayList<String> myAimsList;
@@ -80,7 +71,7 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
         EditText etName= (EditText)findViewById(R.id.et_name);
         EditText etDate= (EditText)findViewById(R.id.et_date);
         EditText etTime= (EditText)findViewById(R.id.et_time);
-        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        Spinner spPriority = (Spinner)findViewById(R.id.spPriority);
         Spinner spAim= (Spinner)findViewById(R.id.sp_aim);
         String date;
         int aimID=0;
@@ -144,7 +135,7 @@ public class AddTaskActivity extends AppCompatActivity  implements DatePickerDia
     }
     private void populatePrioritySpinner()
     {
-        Spinner spPriority = (Spinner)findViewById(R.id.sp_priority);
+        Spinner spPriority = (Spinner)findViewById(R.id.spPriority);
         //creating adapter with TextView which store strings (aims) loaded from database
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddTaskActivity.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.priority));
