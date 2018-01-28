@@ -25,7 +25,7 @@ public class Dates {
         int month =(resultdate.getMonth())+1;
         int dayOfMonth =resultdate.getDate();
 
-        return getRefactoredDate(year,month+1,dayOfMonth);
+        return getRefactoredDate(year,month,dayOfMonth);
 
     }
 
@@ -48,3 +48,4 @@ public class Dates {
             return number+"";
     }
 }
+

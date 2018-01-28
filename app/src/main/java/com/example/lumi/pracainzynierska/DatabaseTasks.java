@@ -212,6 +212,32 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         return false;
     }
 
+    public void updateReminderData(int minPriotity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("MinPriorytet",minPriotity-1);
+        db.update(table_users,cv,"",null);
+
+    }
+
+    public void updateReminderHour(String hour) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("GodzinaPrzypomnienia",hour);
+        db.update(table_users,cv,"",null);
+
+    }
+
+    public void setIsReminderOn(boolean doIsReminderOn)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("CzyWlaczane",doIsReminderOn);
+        db.update(table_users, cv, "", null);
+    }
+
     public int numberTasksInCategory(String category)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -227,4 +253,5 @@ public class DatabaseTasks extends SQLiteOpenHelper {
                 ("SELECT * FROM "+table_aims+" WHERE Kategoria='"+category+"'", null);
         return cursor.getCount();
     }
+
 }
