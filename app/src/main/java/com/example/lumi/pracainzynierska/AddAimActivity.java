@@ -60,7 +60,7 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date =Dates.getRefactoredDate(year,month,dayOfMonth);
+        String date =Dates.getRefactoredDate(year,month +1,dayOfMonth);
         EditText etDate = (EditText)findViewById(R.id.et_date);
         etDate.setText(date);
     }

@@ -16,7 +16,7 @@ public class DatePickerFragment extends DialogFragment{
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar cal =Calendar.getInstance();
         int year= cal.get(Calendar.YEAR);
-        int month= cal.get(Calendar.MONTH)+1;//REMEMBER about +1 because months are in range 0-11
+        int month= cal.get(Calendar.MONTH);
         int day= cal.get(Calendar.DAY_OF_MONTH);
         return new DatePickerDialog(getActivity(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
     }

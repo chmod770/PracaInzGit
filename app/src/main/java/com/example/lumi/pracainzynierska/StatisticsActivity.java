@@ -24,7 +24,9 @@ import java.util.List;
 public class StatisticsActivity extends AppCompatActivity{
 
     int[] amounts=new int[5];
-    String[] categories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
+     String[] aimsCategories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
+    public String[] taskCategories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
+
     DatabaseTasks db = new DatabaseTasks(this);
     List<PieEntry> pieEntries = new ArrayList<>();
 
@@ -64,24 +66,31 @@ public class StatisticsActivity extends AppCompatActivity{
     private void setupTasksOnCategoryChart()
     {
         pieEntries.clear();
-        for(int i = 0 ; i < categories.length;i++)
+        int numberTasksInCategory;
+        for(int i = 0 ; i < taskCategories.length;i++)
         {
-            amounts[i]=db.numberTasksInCategory(categories[i]);
-
-            if(amounts[i]>0)
-            pieEntries.add(new PieEntry(amounts[i],categories[i]));
+            numberTasksInCategory = db.numberTasksInCategory(taskCategories[i]);
+            if(numberTasksInCategory>0)
+            pieEntries.add(new PieEntry(db.numberTasksInCategory(taskCategories[i]),taskCategories[i]));
         }
+
+        numberTasksInCategory=db.numberTasksInCategoryOther();
+        if(numberTasksInCategory>0)
+            pieEntries.add(new PieEntry(numberTasksInCategory,"inne"));
+
         displayChart("Zadania");
     }
 
     private void setupAimsOnCategoryPieChart()
     {
         pieEntries.clear();
-        for(int i = 0 ; i < categories.length;i++)
+        for(int i = 0 ; i < aimsCategories.length;i++)
         {
-            amounts[i]=db.numberAimsInCategory(categories[i]);
-            if(amounts[i]>0)
-            pieEntries.add(new PieEntry(amounts[i],categories[i]));
+
+            int numberAimsInCurrentCategory =db.numberAimsInCategory(aimsCategories[i]);
+            if(numberAimsInCurrentCategory>0)
+            pieEntries.add(new PieEntry(numberAimsInCurrentCategory,aimsCategories[i]));
+
         }
         displayChart("Cele");
     }
@@ -108,7 +117,6 @@ public class StatisticsActivity extends AppCompatActivity{
     private class MyValueFormatter implements IValueFormatter {
         @Override
         public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-
             return new DecimalFormat("###,###,##0").format(value);
         }
     }

@@ -34,7 +34,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 Intent intent = new Intent(CalendarActivity.this, DayPlanActivity.class );
                 Bundle b = new Bundle();//creating new Bundle where is stored data
-                b.putString("date", Dates.getRefactoredDate(year, month, dayOfMonth)); //adding date to Boundle
+                b.putString("date", Dates.getRefactoredDate(year, month+1, dayOfMonth)); //adding date to Boundle
                 intent.putExtras(b); //Put your id to your next Intent, there will be date in Extras
                 startActivity(intent);//starting new activity
             }

@@ -247,6 +247,13 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+    public int numberTasksInCategoryOther()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery("SELECT * FROM "+table_tasks+" WHERE CelID=0",null);
+        return cursor.getCount();
+    }
+
     public int numberAimsInCategory(String category) {
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteCursor cursor = (SQLiteCursor) db.rawQuery

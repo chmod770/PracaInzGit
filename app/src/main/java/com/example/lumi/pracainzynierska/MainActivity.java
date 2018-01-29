@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         {
 
             case R.id.btn_calendar:
+                startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                 break;
             case R.id.btn_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
