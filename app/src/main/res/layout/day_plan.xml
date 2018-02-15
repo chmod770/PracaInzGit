@@ -24,7 +24,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:text="Dodaj Zadanie" />
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
+        android:text="Dodaj Zadanie"
+        android:textColor="#fff" />
+
     <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
@@ -34,7 +38,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:text="Wróć" />
+        android:background="@color/colorPrimary"
+        android:text="Wróć"
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/tv_info"

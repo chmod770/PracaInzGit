@@ -25,18 +25,23 @@
         android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dodaj cel"
         android:layout_above="@+id/btn_back"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
+        android:text="Dodaj cel"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btn_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wróć"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:text="Wróć"
+        android:textColor="#fff" />
 
 </RelativeLayout>

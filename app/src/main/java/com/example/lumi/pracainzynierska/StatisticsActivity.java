@@ -24,8 +24,7 @@ import java.util.List;
 public class StatisticsActivity extends AppCompatActivity{
 
     int[] amounts=new int[5];
-     String[] aimsCategories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
-    public String[] taskCategories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
+     String[] categories = {"Rodzina","Finanse","Edukacja","Zdrowie","Kontakty"};
 
     DatabaseTasks db = new DatabaseTasks(this);
     List<PieEntry> pieEntries = new ArrayList<>();
@@ -67,11 +66,11 @@ public class StatisticsActivity extends AppCompatActivity{
     {
         pieEntries.clear();
         int numberTasksInCategory;
-        for(int i = 0 ; i < taskCategories.length;i++)
+        for(int i = 0 ; i < categories.length;i++)
         {
-            numberTasksInCategory = db.numberTasksInCategory(taskCategories[i]);
+            numberTasksInCategory = db.numberTasksInCategory(categories[i]);
             if(numberTasksInCategory>0)
-            pieEntries.add(new PieEntry(db.numberTasksInCategory(taskCategories[i]),taskCategories[i]));
+            pieEntries.add(new PieEntry(db.numberTasksInCategory(categories[i]),categories[i]));
         }
 
         numberTasksInCategory=db.numberTasksInCategoryOther();
@@ -84,12 +83,12 @@ public class StatisticsActivity extends AppCompatActivity{
     private void setupAimsOnCategoryPieChart()
     {
         pieEntries.clear();
-        for(int i = 0 ; i < aimsCategories.length;i++)
+        for(int i = 0 ; i < categories.length;i++)
         {
 
-            int numberAimsInCurrentCategory =db.numberAimsInCategory(aimsCategories[i]);
+            int numberAimsInCurrentCategory =db.numberAimsInCategory(categories[i]);
             if(numberAimsInCurrentCategory>0)
-            pieEntries.add(new PieEntry(numberAimsInCurrentCategory,aimsCategories[i]));
+            pieEntries.add(new PieEntry(numberAimsInCurrentCategory,categories[i]));
 
         }
         displayChart("Cele");

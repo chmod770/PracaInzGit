@@ -9,21 +9,28 @@
         android:id="@+id/btn_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kalendarz"
-        android:onClick="buttonOnClick"
-        android:layout_below="@+id/btn_aims"
         android:layout_alignLeft="@+id/btn_settings"
-        android:layout_alignStart="@+id/btn_settings" />
+        android:layout_alignStart="@+id/btn_settings"
+        android:layout_below="@+id/btn_aims"
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
+        android:onClick="buttonOnClick"
+        android:text="Kalendarz"
+        android:textColor="#fff" />
+
     <Button
         android:id="@+id/btn_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ustawienia"
-        android:onClick="buttonOnClick"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/tvData"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvData"
+        android:layout_marginBottom="2sp"
+        android:layout_marginTop="70dp"
+        android:background="@color/colorPrimary"
+        android:onClick="buttonOnClick"
+        android:text="Ustawienia"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btn_aims"
@@ -32,8 +39,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btn_settings"
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
         android:onClick="buttonOnClick"
-        android:text="Moje Cele" />
+        android:text="Moje Cele"
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/tvData"
@@ -56,17 +66,23 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btn_calendar"
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
         android:onClick="buttonOnClick"
-        android:text="Mój Dzień" />
+        android:text="Mój Dzień"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btn_tasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_statistics"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
         android:onClick="buttonOnClick"
         android:text="Taski"
-        android:layout_below="@+id/btn_statistics"
-        android:layout_centerHorizontal="true" />
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btn_statistics"
@@ -74,8 +90,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_day"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2sp"
+        android:background="@color/colorPrimary"
         android:onClick="buttonOnClick"
-        android:text="Statystyki" />
+        android:text="Statystyki"
+        android:textColor="#fff" />
 
 
 </RelativeLayout>
