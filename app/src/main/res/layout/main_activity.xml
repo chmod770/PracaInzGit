@@ -76,13 +76,14 @@
         android:id="@+id/btn_tasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_statistics"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="2sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="@color/colorPrimary"
         android:onClick="buttonOnClick"
-        android:text="Taski"
-        android:textColor="#fff" />
+        android:text="Test Bazy"
+        android:textColor="#fff"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_statistics"
@@ -95,6 +96,17 @@
         android:onClick="buttonOnClick"
         android:text="Statystyki"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/tv_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_statistics"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Wykonano dziś"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

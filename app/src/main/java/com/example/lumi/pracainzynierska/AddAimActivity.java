@@ -48,7 +48,7 @@ public class AddAimActivity extends AppCompatActivity  implements DatePickerDial
             }
         });
 
-        //create handle to Categories Spiner
+        //create handle to Categories Spinner
         Spinner spCategory = (Spinner)findViewById(R.id.sp_category);
         //create array adapter storing items containing one string(category)
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(AddAimActivity.this,

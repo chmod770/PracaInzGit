@@ -51,7 +51,6 @@ public class AimsActivity extends AppCompatActivity {
         registerClickCallback();
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();

@@ -261,4 +261,21 @@ public class DatabaseTasks extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+    public int numberTodayDoneTasks()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery
+                ("SELECT * FROM "+table_tasks+" WHERE Data='"+Dates.getTodayDate()+"' AND CzyZrobione=1", null);
+        return cursor.getCount();
+    }
+
+    public int numberTodayTasks()
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteCursor cursor = (SQLiteCursor) db.rawQuery
+                ("SELECT * FROM "+table_tasks+" WHERE Data='"+Dates.getTodayDate()+"'", null);
+        return cursor.getCount();
+    }
+
 }

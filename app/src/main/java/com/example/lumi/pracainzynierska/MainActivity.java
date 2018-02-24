@@ -41,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
     {
         TextView data = (TextView)findViewById(R.id.tvData);
         data.setText("Witaj! "+ user.getImie());
+        TextView tv_done = (TextView)findViewById(R.id.tv_done);
+        DatabaseTasks db = new DatabaseTasks(getApplicationContext());
+        if(db.numberTodayTasks()==0)
+            tv_done.setText("Nie posiadasz ustawionych zadań na dzisiaj");
+        else {
+            tv_done.setText("Wykonano dziś " + db.numberTodayDoneTasks() + "/" + db.numberTodayTasks() + " zadań \n");
+            if(db.numberTodayTasks()==db.numberTodayDoneTasks())
+                tv_done.append("Gratulacje wykonano dziś 100% na dziś");
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -49,17 +58,14 @@ public class MainActivity extends AppCompatActivity {
         switch(view.getId())
         {
 
-            case R.id.btn_calendar:
-                startActivity(new Intent(MainActivity.this, CalendarActivity.class));
-                break;
             case R.id.btn_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
             case R.id.btn_aims:
                 startActivity(new Intent(MainActivity.this, AimsActivity.class));
                 break;
-            case R.id.btn_tasks:
-                startActivity(new Intent(MainActivity.this, DayActivity.class));
+            case R.id.btn_calendar:
+                startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                 break;
             case R.id.btn_day:
                 startActivity(new Intent(MainActivity.this, DayPlanActivity.class));
@@ -67,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_statistics:
                 startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
                 break;
+            /*case R.id.btn_tasks:
+                startActivity(new Intent(MainActivity.this, DayActivity.class));
+                break;*/
         }
         updateView();
     }
