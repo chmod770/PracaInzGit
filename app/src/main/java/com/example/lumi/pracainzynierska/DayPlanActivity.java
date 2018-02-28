@@ -194,4 +194,3 @@ public class DayPlanActivity extends AppCompatActivity {
         }
     }
 }
-
